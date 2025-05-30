@@ -1,0 +1,242 @@
+*{
+    margin:0;
+    padding:0;
+}
+.fixed{
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #131921;
+    color: white;
+    padding: 5px 20px;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Left: logo + location */
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo {
+    width: 100px;
+    margin-top: 5px;
+    object-fit: contain;
+  }
+  
+  .location {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pinIcon {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  
+  .deliver {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .smallText {
+    font-size: 12px;
+  }
+  
+  .boldText {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Search */
+  .search {
+    display: flex;
+    flex: 1 1 100%;
+    max-width: 700px;
+    margin: 10px 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .searchInput {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .searchIcon {
+    background-color: #febd69;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Right section */
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+  }
+  
+  .language {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .language img {
+    width: 24px;
+    height: 16px;
+  }
+  
+  .navLink {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .navLink:hover,
+  .hoverBox:hover {
+    border: 1px solid white;
+    background-color: #232f3e;
+    box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.3);
+  }
+  
+  .cart {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .cartIcon {
+    font-size: 28px;
+  }
+  
+  .cartCount {
+    position: absolute;
+    top: 0;
+    left: 18px;
+    font-weight: bold;
+    color: #f08804;
+  }
+  
+  .hoverBox {
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 576px) {
+    .location,
+    .language {
+      display: none;
+    }
+  
+    .navLink:nth-child(1),
+    .navLink:nth-child(2) {
+      display: none;
+    }
+  
+    .search {
+      flex: 1 1 100%;
+      margin: 10px 0;
+    }
+  
+    .logo {
+      width: 80px;
+    }
+  
+    .right {
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 10px;
+    }
+  
+    .cartCount {
+      left: 14px;
+      font-size: 12px;
+    }
+  }
+
+  
+  /*lower header css*/
+  .lowerHeader {
+    background-color: #232f3e;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+  
+  .lowerHeaderLinks {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+  .lowerLink {
+    color: white;
+    text-decoration: none;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  
+  .lowerLink:hover {
+    border: 1px solid white;
+    background-color: #37475a;
+    box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.3);
+  }
+  
+  .icon {
+    font-size: 18px;
+  }
+  
+  /* Optional: smooth horizontal scroll on smaller screens */
+  .lowerHeaderLinks::-webkit-scrollbar {
+    display: none;
+  }
+  .lowerHeaderLinks {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
