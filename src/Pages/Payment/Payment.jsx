@@ -56,9 +56,10 @@ export default function Payment() {
       const totalInCents = Math.round(total * 100);
 
       // Step 1: Get client secret from backend
-     await axios.post(
+  const res = await axios.post(
   `https://amazon-api-deploy-8u2d.onrender.com/payment/create?total=${totalInCents}`
 );
+
       const clientSecret = res.data.clientSecret;
 
       // Step 2: Confirm payment with Stripe
