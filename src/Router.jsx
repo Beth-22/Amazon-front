@@ -16,7 +16,7 @@ const stripePromise = loadStripe("pk_test_51RaMg8PCKcmQXeh6wnbmYIRyEc46bWBX9PCGt
 
 export default function Routing() {
   return (
-    <Router basename="/Amazon-clone-2024">
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
