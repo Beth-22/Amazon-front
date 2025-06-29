@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CategoryCard.module.css";
+import styles from "./categoryCard.module.css";
 import {Link} from 'react-router-dom'
 export default function CategoryCard({ data }) {
   return (
