@@ -1,0 +1,35 @@
+.ordersContainer {
+  padding: 40px;
+}
+
+.orderCard {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  background: #fefefe;
+}
+
+.orderHeader {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.orderItem {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.orderItem img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}

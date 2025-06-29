@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
@@ -6,17 +6,24 @@ import classes from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
-import { useContext } from "react";
-
+import { auth } from "../../Utility/firebase";
+import { Type } from "../../Utility/action.type";
 
 function Header() {
+  const [{ user, basket }, dispatch] = useContext(DataContext);
 
-  const[{basket},dispatch]=useContext(DataContext)
-  const totalItem = basket?.reduce((amount, item) => {
-    return item.amount + amount;
-  },0);
+  const totalItem =
+    basket?.reduce((amount, item) => item.amount + amount, 0) || 0;
+
+  const handleAuthClick = (e) => {
+    if (user) {
+      e.preventDefault(); // prevent navigating to "#"
+      auth.signOut();
+      dispatch({ type: Type.SET_USER, user: null });
+    }
+  };
+
   return (
-    <>
     <section className={classes.fixed}>
       <header className={classes.header_container}>
         {/* Logo and Location */}
@@ -55,7 +62,7 @@ function Header() {
         {/* Right Side */}
         <div className={classes.right}>
           {/* Language */}
-          <div className={` ${classes.language} ${classes.hoverBox}`}>
+          <div className={`${classes.language} ${classes.hoverBox}`}>
             <img
               src="https://static-00.iconduck.com/assets.00/us-flag-icon-2048x1079-pctndxsj.png"
               alt="US Flag"
@@ -65,10 +72,25 @@ function Header() {
             </select>
           </div>
 
-          {/* Sign In */}
-          <Link to="/auth" className={classes.navLink}>
-            <p className={classes.smallText}>Hello, Sign in</p>
-            <span className={classes.boldText}>Account & Lists</span>
+          {/* Sign In / Out */}
+          <Link
+            to={!user ? "/auth" : "#"}
+            className={classes.navLink}
+            onClick={handleAuthClick}
+          >
+            <div>
+              {user ? (
+                <>
+                  <p>Hello {user?.email?.split("@")[0]}</p>
+                  <span className={classes.boldText}>Sign Out</span>
+                </>
+              ) : (
+                <>
+                  <p className={classes.smallText}>Hello, Sign In</p>
+                  <span className={classes.boldText}>Account & Lists</span>
+                </>
+              )}
+            </div>
           </Link>
 
           {/* Orders */}
@@ -84,9 +106,9 @@ function Header() {
           </Link>
         </div>
       </header>
+
       <LowerHeader />
-      </section>
-    </>
+    </section>
   );
 }
 

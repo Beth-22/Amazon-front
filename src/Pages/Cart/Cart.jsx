@@ -3,12 +3,13 @@ import LayOut from "../../Components/LayOut/LayOut";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import styles from "./Cart.module.css";
 import Currencyformat from "../../Components/CurrencyFormat/Currencyformat";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 
 export default function Cart() {
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{ basket, user }, dispatch] = useContext(DataContext);
+  const navigate = useNavigate();
 
   const total = basket.reduce((amount, item) => {
     return item.price * item.amount + amount;
@@ -26,6 +27,19 @@ export default function Cart() {
       type: Type.REMOVE_FROM_BASKET,
       id,
     });
+  };
+
+  const handleCheckout = () => {
+    if (!user) {
+      navigate("/auth", {
+        state: {
+          msg: "Please log in to continue to checkout",
+          redirect: "/payment",
+        },
+      });
+    } else {
+      navigate("/payment");
+    }
   };
 
   return (
@@ -85,9 +99,10 @@ export default function Cart() {
                 <input type="checkbox" />
                 <small>This order contains a gift</small>
               </label>
-              <Link to="/payments" className={styles.checkoutBtn}>
+
+              <button onClick={handleCheckout} className={styles.checkoutBtn}>
                 Continue to Checkout
-              </Link>
+              </button>
             </div>
           )}
         </div>
